@@ -9,6 +9,12 @@ class Beasiswa extends CI_Controller {
         $this->load->library('pdf');
     }
 
+    public function cetak()
+    {
+        $data['beasiswa'] = $this->BeasiswaModel->get_beasiswa();
+        $this->load->view('beasiswa/beasiswa_print', $data);
+    }
+
     public function index()
     {
         $data['title'] = "Data Beasiswa | SIMDAWA APP";
@@ -53,11 +59,5 @@ class Beasiswa extends CI_Controller {
             $this->BeasiswaModel->delete_beasiswa($id);
             redirect('beasiswa');
         }
-    }
-
-    public function cetak()
-    {
-        $data['beasiswa'] = $this->BeasiswaModel->get_beasiswa();
-        $this->load->view('beasiswa/beasiswa_print', $data);
     }
 }

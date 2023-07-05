@@ -3,10 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class prodi extends CI_Controller {
 
-    public function __construct()
+    function __construct()
     {
         parent:: __construct();
         $this->load->model('ProdiModel');
+        $this->load->library('pdf');
+    }
+
+    public function cetak()
+    {
+        $data['prodi'] = $this->ProdiModel->get_prodi();
+        $this->load->view('prodi/prodi_print', $data);
     }
 
 	public function index()
